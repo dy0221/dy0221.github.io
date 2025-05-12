@@ -5,13 +5,32 @@ title: "Posts by Category"
 author_profile: true
 ---
 
-{% include base_path %}
-{% include group-by-array collection=site.posts field="categories" %}
+{% assign sorted_categories = site.categories | sort %}
 
-{% for category in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1.5rem;">
+  {% for category in sorted_categories %}
+    {% assign name = category[0] %}
+    <a href="{{ site.baseurl }}/categories/{{ name | slugify }}/"
+       style="
+         display: inline-block;
+         padding: 0.5rem 0.9rem;
+         border-radius: 0.6rem;
+         border: 1px solid var(--global-border-color);
+         background-color: var(--global-bg-color);
+         color: var(--global-text-color);
+         text-align: center;
+         text-decoration: none;
+         font-size: 0.9rem;
+         font-weight: 600;
+         box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+         transition: transform 0.2s ease, background-color 0.2s;
+         min-width: 100px;
+       "
+       onmouseover="this.style.transform='scale(1.03)'; this.style.backgroundColor='var(--global-hover-bg-color)'"
+       onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='var(--global-bg-color)'">
+      {{ name }}<br>
+      <small style="font-weight: 400; color: var(--global-muted-color);">({{ category[1].size }} posts)</small>
+    </a>
   {% endfor %}
-{% endfor %}
+</div>
+
