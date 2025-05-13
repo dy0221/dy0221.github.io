@@ -1,7 +1,14 @@
 {% include base_path %}
 
 {% assign current_category = page.categories[0] %}
-{% assign posts_in_category = site.posts | where_exp: "p", "p.categories contains current_category" | sort: "date" %}
+<!-- 언어 필터링 -->
+{%- assign current_lang = page.lang -%}
+
+{% assign posts_in_category = site.posts 
+  | where: "lang", page.lang 
+  | where_exp: "p", "p.categories contains page.categories[0]" 
+  | sort: "date" %}
+
 
 {% assign prev_post = nil %}
 {% assign next_post = nil %}

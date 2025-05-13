@@ -1,7 +1,7 @@
 ---
 title: '반가워요'
-date: 2025-05-13
-permalink: /posts/2025/05/hello_blog-kr/
+date: 2025-05-14
+permalink: /posts/2025/05/hello_blog2-kr/
 tags:
   - cool posts
   - test

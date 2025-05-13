@@ -17,8 +17,23 @@ layout: default
 
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image or page.layout == "category" %}
-      <h1 class="page__title">{{ page.title }}</h1>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="page__title">{{ page.title }}</h1>
+        <div class="lang-switch">
+          <a href="/categories-kr/">한국어</a> |
+          <a href="/categories-en/">EN</a>
+        </div>
+      </div>
     {% endunless %}
     {{ content }}
   </div>
 </div>
+
+<style>
+  .lang-switch a {
+    margin: 0 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--link-color);
+  }
+</style>
