@@ -1,6 +1,10 @@
 > 📚 이 블로그는 [academicpages](https://github.com/academicpages/academicpages.github.io) 템플릿을 기반으로 만들어졌습니다.
+
+> page [dyblog](https://dy0221.github.io/)
 ## todo
-todo: kr, en 버튼 만들기 >> 카테고리에 각 언어별로
+//todo: kr, en 버튼 만들기 >> 카테고리에 각 언어별로
+//todo: 문제점 : tag나 blog에서도 언어 클릭시 카테고리로 이동
+//todo: 각각을 맞춰서 이동할수있도록 archive.html고침
 ## 예상 가능한 오류
 1. 부모 카테고리가 달라도 나의 카테고리가 같으면 navigation에서 같은 카테고리로 묶는다.   
 \>> 이경우 딱히 카테고리가 겹칠 가능성이 없어보여서 아직 놔두었다.
