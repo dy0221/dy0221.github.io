@@ -131,32 +131,4 @@ author_profile: true
 
 </style>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  // 상위 카테고리: 모두 펼침
-  document.querySelectorAll(".accordion-toggle").forEach(btn => {
-    const content = btn.nextElementSibling;
-    content.style.display = "block";
-    btn.classList.add("open");
-
-    btn.addEventListener("click", () => {
-      btn.classList.toggle("open");
-      content.style.display = (content.style.display === "block") ? "none" : "block";
-    });
-  });
-
-  // 하위 카테고리: 모두 닫힘
-  document.querySelectorAll(".sub-toggle").forEach(btn => {
-    const sub = btn.nextElementSibling;
-
-    sub.style.display = "none";          // 기본 닫힘
-    // open 클래스는 클릭 시에만 붙게 함
-
-    btn.addEventListener("click", () => {
-      btn.classList.toggle("open");
-      sub.style.display = (sub.style.display === "block") ? "none" : "block";
-    });
-  });
-  });
-
-</script>
+<script src="{{ '/assets/js/category-toggle.js' | relative_url }}"></script>
