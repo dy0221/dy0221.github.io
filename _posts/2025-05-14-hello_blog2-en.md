@@ -10,6 +10,7 @@ tags:
 parent_category: test
 category: test
 lang: en
+slug_id: test/hello-2
 ---
 
 Hello!

@@ -10,6 +10,7 @@ tags:
 parent_category: test
 category: test
 lang: kr
+slug_id: test/hello-1
 ---
 
 반가워요!

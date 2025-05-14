@@ -26,7 +26,26 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          <!-- {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %} -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="page__title" itemprop="headline" style="margin: 0;">
+              {{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}
+            </h1>
+            
+            {% assign slug_id = page.slug_id %}
+            {% assign post_kr = site.posts | where: "slug_id", slug_id | where: "lang", "kr" | first %}
+            {% assign post_en = site.posts | where: "slug_id", slug_id | where: "lang", "en" | first %}
+
+            <div class="lang-switch">
+              {% if post_kr %}
+                <a href="{{ post_kr.url }}">한국어</a>
+              {% endif %}
+              |
+              {% if post_en %}
+                <a href="{{ post_en.url }}">EN</a>
+              {% endif %}
+            </div>
+          </div>
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
@@ -107,3 +126,12 @@ layout: default
     </div>
   {% endif %}
 </div>
+
+<style>
+  .lang-switch a {
+    margin: 0 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--link-color);
+  }
+</style>
