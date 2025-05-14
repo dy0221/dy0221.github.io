@@ -1,5 +1,5 @@
 {% include base_path %}
-
+{% assign lang = page.lang | default: "kr" %}
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
@@ -13,7 +13,24 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+
+            {% comment %} 언어별 URL 변경 처리 {% endcomment %}
+            {% assign link_title = link.title %}
+            {% if link_title == "Categories" %}
+              {% if lang == "kr" %}
+                <li class="masthead__menu-item"><a href="/category-kr/">{{ link_title }}</a></li>
+              {% else %}
+                <li class="masthead__menu-item"><a href="/category-en/">{{ link_title }}</a></li>
+              {% endif %}
+            {% elsif link_title == "Blog Posts" %}
+              {% if lang == "kr" %}
+                <li class="masthead__menu-item"><a href="/year-kr/">{{ link_title }}</a></li>
+              {% else %}
+                <li class="masthead__menu-item"><a href="/year-en/">{{ link_title }}</a></li>
+              {% endif %}
+            {% else %}
+              <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link_title }}</a></li>
+            {% endif %}
           {% endfor %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>

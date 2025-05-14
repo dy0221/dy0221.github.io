@@ -1,12 +1,16 @@
 ---
 layout: archive
-permalink: /tags/
+page_type: tag
+lang: kr
+permalink: /tag-kr/
 title: "Posts by Tags"
 author_profile: true
 ---
 
 {% include base_path %}
-{% include group-by-array collection=site.posts field="tags" %}
+{% assign lang_filter = 'kr' %}
+{% assign filtered_posts = site.posts | where: "lang", lang_filter %}
+{% include group-by-array collection=filtered_posts field="tags" %}
 
 {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}

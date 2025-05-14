@@ -1,11 +1,16 @@
 ---
 layout: archive
+page_type: category
+lang: kr
 title: "Posts by Category"
-permalink: /categories/
+permalink: /category-kr/
 author_profile: true
 ---
 
-{% assign grouped = site.posts | group_by: "parent_category" %}
+{% assign lang_filter = 'kr' %}
+{% assign filtered_posts = site.posts | where: "lang", lang_filter %}
+{% assign grouped = filtered_posts| group_by: "parent_category" %}
+
 <div class="category-accordion">
   {% for group in grouped %}
     {% assign parent = group.name %}
