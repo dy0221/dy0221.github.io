@@ -2,9 +2,7 @@
 
 > page [dyblog](https://dy0221.github.io/)
 ## todo
-//todo: kr, en 버튼 만들기 >> 카테고리에 각 언어별로
-//todo: 문제점 : tag나 blog에서도 언어 클릭시 카테고리로 이동
-//todo: 각각을 맞춰서 이동할수있도록 archive.html고침
+
 ## 예상 가능한 오류
 1. 부모 카테고리가 달라도 나의 카테고리가 같으면 navigation에서 같은 카테고리로 묶는다.   
 \>> 이경우 딱히 카테고리가 겹칠 가능성이 없어보여서 아직 놔두었다.
@@ -45,6 +43,7 @@ tags:
 date: 2025-05-13
 parent_category: devops
 category: gitlab
+slug_id: test/hello-1
 ---
 ```
 필드 설명
@@ -64,6 +63,9 @@ category: gitlab
 - parent_category: 부모 카테고리
 
 - category: 나의 카테고리
+
+- slug_id: 같은 글임을 확인하기 위한 식별자 id(같은 글이면 같아야함)
+
 ## 본문 작성
 메타데이터 아래에 일반적인 마크다운(Markdown) 문법으로 글을 작성하면 된다
 
