@@ -27,7 +27,8 @@ author:
   pronouns         : # example: "she/her"  
   bio              : "Hi"
   location         : "South Korea"
-  employer         : "Hanyang University ERICA, Robotics"
+  # 이건 길어서 autor-profile.html에 직접입력함
+  employer         : "Hanyang University<br>ERICA, Robotics"
   uri              : # URL
   email            : "wjm2517@hanyang.ac.kr" 
 
