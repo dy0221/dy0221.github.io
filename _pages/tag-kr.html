@@ -1,14 +1,13 @@
 ---
 layout: archive
 page_type: tag
-permalink: /tags/
+lang: kr
+permalink: /tag-kr/
 title: "Posts by Tags"
 author_profile: true
 ---
 
 {% include base_path %}
-<!-- {% include group-by-array collection=site.posts field="tags" %} -->
-<!-- 바뀐부분 -->
 {% assign lang_filter = 'kr' %}
 {% assign filtered_posts = site.posts | where: "lang", lang_filter %}
 {% include group-by-array collection=filtered_posts field="tags" %}

@@ -9,10 +9,10 @@
 
 main:
   - title: "Categories"
-    url: /categories/
+    url: /category-kr/
         
   - title: "Blog Posts"
-    url: /year-archive/
+    url: /year-kr/
     
   # - title: "CV"
   #   url: /cv/

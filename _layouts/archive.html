@@ -20,9 +20,18 @@ layout: default
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 class="page__title">{{ page.title }}</h1>
         <div class="lang-switch">
-          <a href="/categories-kr/">한국어</a> |
-          <a href="/categories-en/">EN</a>
-        </div>
+          {% assign current_type = page.page_type %}
+          {% if current_type == "year" %}
+            <a href="/year-kr/">한국어</a> |
+            <a href="/year-en/">EN</a>
+          {% elsif current_type == "category" %}
+            <a href="/category-kr/">한국어</a> |
+            <a href="/category-en/">EN</a>
+          {% elsif current_type == "tag" %}
+            <a href="/tag-kr/">한국어</a> |
+            <a href="/tag-en/">EN</a>
+          {% endif %}
+        </div>        
       </div>
     {% endunless %}
     {{ content }}
