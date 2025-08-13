@@ -10,7 +10,7 @@ tags:
 parent_category: Math Notes
 category: Linear Algebra
 lang: kr
-slug_id: Elimination
+slug_id: Linear Algebra/Elimination
 ---
 ### 소거법
 우리의 목표는 $$Ax=b$$에서 $$x$$를 구하는 것, 즉 linear equation을 푸는 것이다. 이때 사용되는 방법이 elimination(소거법)이다.   
