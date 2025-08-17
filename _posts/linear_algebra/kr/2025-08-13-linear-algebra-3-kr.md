@@ -27,7 +27,7 @@ slug_id: Linear Algebra/Matrix multiplication
 ### Row $$\times$$ Column  
 
 가장 먼저 우리가 학교에서 배우는 행과 열의 곱으로써 바라보는 방법이다. 행렬 A(m by n)와 행렬 B(n by l)를 곱해 행렬 
-C(n by l)를 얻는다고 할 때, 곱해지는 왼쪽의 행렬의 열과 오른쪽 행렬의 행의 크기가 같아야 계산이 이루어 진다.
+C(m by l)를 얻는다고 할 때, 곱해지는 왼쪽의 행렬의 열과 오른쪽 행렬의 행의 크기가 같아야 계산이 이루어 진다.
 
 <p align="center">
 $$
@@ -39,7 +39,7 @@ $$
 
 <p align="center">
 $$
-\quad C_{ij} = \sum\limits_{k=1}^n a_{ik}b_{kj}\quad \quad (n은 행렬 A의 열의 크기)
+\quad C_{ij} = \sum\limits_{k=1}^n a_{ik}b_{kj}\quad \quad (n은\,행렬\,A의\,열의\,크기)
 $$
 </p> 
 
@@ -48,7 +48,7 @@ $$
 <br>
 ### Columns
 
-Column 관점으로 계산하는 것은 간단하다. 
+열 관점으로 계산하는 것은 간단하다. 
 
 행렬 A와 행렬 B를 곱해서 행렬 C를 얻는다고 할때, 행렬 A와 행렬 B의 j 열을 곱한 값은 행렬 C의 j열이다.  
 
@@ -101,7 +101,7 @@ $$
 <br>
 ### Rows
 
-Row 관점은 column과 비슷 하다.  
+행 관점은 열과 비슷 하다.  
 
 행렬 A의 i번째 행과 행렬 B를 곱한 값은 행렬 C의 i번째 행이다.   
 
@@ -133,7 +133,7 @@ Row 관점은 column과 비슷 하다.
 이를 만족시키기 위해서는 열의 경우는 행렬의 오른쪽에 곱해져야 한다. 그리고 행의 경우는 행렬의 왼쪽에 곱해져야 한다. 
 오른쪽은 열의 영향을 주고, 왼쪽은 행에 영향을 준다고 생각하면 편하다.   
 
-### Column $$\times$$ Row
+### Column $$\times$$ Row (열 벡터 x 행 벡터)
 
 그러면 반대는 어떻게 될까?  
 
@@ -154,6 +154,41 @@ $$
  
 이러한 사실은 계산의 편의성 뿐만 아니라,각 열 혹은 행 벡터가 종속이라고도 표현할 수 있고, 좌표로 표현하면 같은 직선상에 놓여 있다고도 표현할 수 있다. 
 
+<br>
+### Block
+마지막은 바로 예시를 통해 알아보자. 다음과 같은 식이 있다고 하자.
+
+<p align="center">
+$$
+\begin{bmatrix}1 & 0 & 1 & 0 \\0 & 1 & 0 & 1 \\1 & 0 & 1 & 0 \\0 & 1 & 0 & 1\end{bmatrix}\begin{bmatrix}2 \\3 \\2 \\3 \end{bmatrix}\quad = \quad\begin{bmatrix}c_{1} \\ c_{2} \\ c_{3} \\ c_{4}\end{bmatrix}
+$$
+</p>
+
+이 식은 2x2 블록으로 나눌수 있도록 패턴이 존재한다.  
 
 
+<p align="center">
+  <img src="/assets/images/linear_algebra/unit1/3/block1.png" width="600px"/>
+  <br/>
+  <strong>그림 7.</strong> 행렬을 블록으로 나누기
+</p>
 
+따라서 이를 블록으로 나누어 보면 다음과 같다.
+
+<p align="center">
+$$
+\begin{aligned}
+&\!\begin{bmatrix} A & A \\ A & A \end{bmatrix}\!\begin{bmatrix} B \\ B \end{bmatrix}  =  \begin{bmatrix} C \\ C \end{bmatrix} \\[14pt]
+&\!\begin{bmatrix} C \\ C \end{bmatrix} = \!\begin{bmatrix} 2AB \\ 2AB \end{bmatrix} \\[14pt]
+&AB = \!\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}\!\begin{bmatrix}2 \\ 3\end{bmatrix} = \!\begin{bmatrix}2 \\ 3\end{bmatrix} \\[14pt]
+&\!\begin{bmatrix} C \\ C \end{bmatrix} = \!\begin{bmatrix} 4 \\ 6 \\ 4 \\ 6 \end{bmatrix}
+\end{aligned}
+$$
+</p>
+
+
+블록을 하나의 원소처럼 취급해서 곱하고 더하게 되면 계산이 더 구조화 되고 깔끔해진다. 다만 주의 해야 할점은 곱해져야하는 블록들의 크기가 맞아야 한다. 블록 A와 B를 곱할때, A의 열의 개수와 B의 행의 크기가 맞아야지 블록끼리 곱셈이 될것이고, 더하는 것도 크기가 맞아야 한다.
+
+<br>
+### 참고 자료
+- Gilbert Strang, *MIT 18.06 Linear Algebra*, [MIT OCW 강의 (2011)](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) 
