@@ -12,7 +12,8 @@ category: Linear Algebra
 lang: kr
 slug_id: Linear Algebra/Elimination
 ---
-### 소거법
+### 소거법  
+
 우리의 목표는 $$Ax=b$$에서 $$x$$를 구하는 것, 즉 linear equation을 푸는 것이다. 이때 사용되는 방법이 elimination(소거법)이다.   
 소거법을 사용하게 되면,행렬 $$A$$가 **상삼각행렬(Upper triangular matrix)** $$U$$의 형태로 바꾼다.   
 그 후 $$Ux= c$$를 풀어 $$x$$를 구할것이다. 예시를 통해 알아보자.
