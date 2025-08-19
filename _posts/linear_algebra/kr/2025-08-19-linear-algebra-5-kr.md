@@ -192,7 +192,7 @@ U(상삼각행렬)의 경우 대각 원소가 일반적인 값이다.
 - U: 대각 원소가 1인 상삼각행렬
 
 <p align="center">
-     <img src="/assets/images/linear_algebra/unit1/5/LU1.png" width="300px"/>
+     <img src="/assets/images/linear_algebra/unit1/5/LU2.png" width="300px"/>
      <br/>
      <strong>그림 4.</strong> LDU분해 예시
 </p>
