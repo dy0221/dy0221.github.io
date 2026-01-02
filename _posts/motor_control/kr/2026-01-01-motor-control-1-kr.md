@@ -1,5 +1,5 @@
 ---
-title: '1.전동기 기본 동작 원리1'
+title: '1.전동기 기본 동작 원리-1'
 date: 2026-01-01
 permalink: /posts/motor-control/1/
 tags:
@@ -83,15 +83,15 @@ $$
 하지만 그림에서 보이듯이 항상 선형으로 비례하는 것이 아닌 일정 구간이 넘어가면 자기장이 아무리 강해도 자속 밀도가 크게 증가 하지 않는다.  
 따라서 자기를 다룰 때에는 점선 사이의 선형 비례 관계를 갖는 구간에서만 제어를 한다.  
 
-자속을 발생시키는 힘을 **기자력($$\mathcal{F}$$ mmf, Margnetonmtive Force)**라고 하고, N번 감은 코일에 전류 I가 흐를 때, $$F = NI$$로 표현한다. 
-단위는 **[A or A-turn],(암페어 혹은 암페어 턴)**을 사용하는데, 턴은 차원이 아니라서 일반적으로 암페어로 사용한다.  
+자속을 발생시키는 힘을 **기자력($$\mathcal{F}$$ mmf, Magnetomotive Force)**라고 하고, N번 감은 코일에 전류 I가 흐를 때, $$F = NI$$로 표현한다. 
+단위는 **[A or A-turn],(암페어 혹은 암페어 턴)**을 사용하는데, 턴(Turn)은 물리적 차원이 없는 무차원 수(Dimensionless number)이므로 일반적으로 암페어로 사용한다.  
 <p align="center">
 $$
 \mathcal{F} = NI = \oint Hdl \,\,\rightarrow \,\, H = \frac{\mathcal{F}}{l}=\frac{NI}{l}
 $$
 </p>  
 
-또한 자계에서도 전기와 같이 저항이 존재 한다. 이를 자기 저항($$\mathcal{R}$$ magnetic reluctance)이라고 하고 이 또한 공간의 길이 $$l$$에는 비례 하나, 자속 쇄교 면적 $$A$$와 투자율 $$\mu$$에는 반비례 한다. 단위는 **[A/wb],(암페어 퍼 웨버)**를 사용한다. 
+또한 자계에서도 전기와 같이 저항이 존재 한다. 이를 자기 저항($$\mathcal{R}$$ magnetic reluctance)이라고 하고 이 또한 공간의 길이 $$l$$에는 비례 하나, 자속이 통과하는 단면적(Cross-sectional Area)$$A$$와 투자율 $$\mu$$에는 반비례 한다. 단위는 **[A/wb],(암페어 퍼 웨버)**를 사용한다. 
 <p align="center">
 $$\mathcal{R} = \frac{l}{\mu A}
 $$
@@ -123,7 +123,7 @@ B &= \mu H
   <strong>그림 5.</strong> 전기 회로와 자기 회로의 유사성(출처:K-mooc,전동기제어)
 </p>
 
-###reference
+### reference
 1. 모터제어 DC,AC,BLDC Motors, 김상훈  
 2. K-MOOC, 전동기제어, 이교범  
 3. ktword, 정보통신기술용어해설  
