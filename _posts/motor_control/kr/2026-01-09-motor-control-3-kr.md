@@ -118,7 +118,7 @@ T_{avg}  &= -\frac{1}{8}I_m^2(L_{max}-L_{min}) \sin 2\delta
 전류를 통해 만들어지는 자속이 2개가 되므로 서로의 자속으로 생기는 인덕턴스 또한 고려해 줘야 한다. 이를 **상호 인덕턴스**라고 한다.[상호 인덕턴스 정보 link](https://en.wikipedia.org/wiki/Inductance#Mutual_inductance)
 
 <p align="center">
-  <img src="/assets/images/motor_control/3/rotation_machine.png" width="650px"/>
+  <img src="/assets/images/motor_control/3/doubly_fea_motor.png" width="600px"/>
   <br/>
   <strong>그림 2.</strong> 이중 여자 기기 시스템
 </p>
