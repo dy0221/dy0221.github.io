@@ -13,8 +13,8 @@ lang: kr
 slug_id: Motor Control/4
 ---
 
-### 직류 전동기 DC MOTOR  
-    
+### 직류 전동기 DC MOTOR
+
 DC모터의 경우는 앞서 배운 회전기기들과 달리 고정자(계자)에 직류를 인가하거나 영구자석을 사용하여 자속을 형성하고,
 회전자(전기자)에 교류전류를 흘려 보내 회전하는 방식의 모터를 말한다.  
   
@@ -141,3 +141,143 @@ $$
 
 능력곡선을 보면, 일정 토크영역에서는 전압이 증가함에 따라 전력과 속도가 증가하고, 일정 출력 영역에서는 자속이 떨어지면서 
 토크도 같이 떨어지는걸 알 수 있다.  
+
+### 직류전동기의 속도 제어 과도상태 특성  
+
+전자 회로에서 커패시터나 인덕터가 껴있으면, 미분방정식으로 표현이 되어 해석하기 쉽지 않다.  
+  
+따라서 시간대 영역을 라플라스 변환을 통해 주파수 영역으로 옮겨 상대적으로 간단한 산술적인 곱으로 풀고 
+시간대에 어떤 영향을 미치는지 파악한다.  
+
+<p align="center">
+  <img src="/assets/images/motor_control/4/system.png" width="450px"/>
+  <br/>
+  <strong>그림 3.</strong>일반적인 시스템 블록도
+</p>
+
+<p>
+$$
+Y(S) = G(s)R(s) \, \rightarrow \, G(s) = \frac{Y(s)}{R(s)}
+$$
+</p>  
+일반적으로 시스템은 그림과 같은 형태를 가진다. 출력의 라플라스 변환 $$Y(s)$$와 입력의 라플라스 변환 $$U(s)$$의 비를 그 시스템의 **전달함수 $$G(s)$$**라고 한다.(초기 값은 0일 때)  
+  
+피드백 시스템의 경우 전달 함수는 다음과 같다.  
+
+<p align="center">
+  <img src="/assets/images/motor_control/4/feedback_system.png" width="450px"/>
+  <br/>
+  <strong>그림 3.</strong>피드백 시스템 블록도
+</p>
+
+<p>
+$$
+\frac{Y(s)}{R(s)} = \frac{G(s)}{1+G(s)H(s)} = \frac{ \text{open loop}}{ 1 + \text{close loop}}
+$$  
+</p>
+
+우리는 전압을 조절해서 속도를 제어 할 것이다. 전압에 따른 속도의 과도 응답 특성을 구하기 위해, 위에서 썼던 DC 모터의 수학적(동역학)모델들을 라플라스 변환해 전달함수를 구할 것이다.  
+  
+<p>
+\begin{align}
+
+V_a &= I_a R_a + L_a \frac{dI_a}{dt} + E_a
+ \\[4pt]
+
+\rightarrow V_a(s) &= R_a I_a(s) + L_a\big(sI_a(s) + I_a(0)\big) + k_e \phi_f \omega_m(s) \\[4pt]
+                   &= (R_a + sL_a)I_a(s) + k_e \phi_f \omega_m(s) \\[20pt]
+
+
+T_e &= k_T \phi_f i_a
+ \\[4pt]
+
+\rightarrow T_e(s) &= k_T \phi_f I_a(s) \\[20pt]
+
+
+E_a &= k_e \phi_f \omega_m
+ \\[4pt]
+
+\rightarrow E_a(s) &= k_e \phi_f \omega_m(s) \\[20pt]
+
+
+T_e &= J\frac{d\omega_m}{dt} + B \omega_m + T_L
+ \\[4pt]
+
+\rightarrow T_e(s) &= J\big(s\omega_m(s) + \omega_m(0)\big) + B\omega_m(s) + T_L(s) \\[4pt]
+                   &= (Js + B)\omega_m(s) + T_L(s) = k_T \phi_f I_a(s)
+\end{align}
+</p>  
+
+입력을 전압, 출력을 속도로 하는 DC 모터의 시스템 블록도는 다음과 같다.  
+<p align="center">
+  <img src="/assets/images/motor_control/4/system_block.png" width="450px"/>
+  <br/>
+  <strong>그림 4.</strong>직류 전동기 시스템 블록도(출처: 모터제어, 김상훈)
+</p>
+
+여기서 $$k_e = k_T$$이므로 $$k_e\phi_f = k_T\phi_f = K$$로 두고, 외란 $$T_L = 0$$으로 두고 전달 함수를 구하면 다음과 같다.  
+<p>
+\begin{align}
+
+\frac{\omega_m}{V_a} &= \frac{\frac{1}{L_a s + R_a}\frac{1}{Js+B} K}{1+\frac{1}{L_a s + R_a}\frac{1}{Js+B} K^2} \\[4pt]
+                     &=\frac{\frac{K}{(L_a s + R_a)(Js+B)}}{\frac{(L_a s + R_a)(Js+B)+K^2}{(L_a s + R_a)(Js+B)}} \\[4pt]
+                     &=\frac{K}{L_a Js^2 + (L_a B + JR_a)s +R_aB + K^2 } \\[20pt]
+\frac{\omega_m}{V_a} &=\frac{\frac{K}{JL_a}}{s^2 + (\frac{R_a}{L_a} + \frac{B}{J})s +(\frac{R_a}{L_a}\frac{B}{J} + \frac{K^2}{JL_a}) } \\[4pt]
+
+\end{align}
+</p>  
+  
+**특성 방정식** : 전달함수의 분모를 0으로 만드는 방정식  
+**극점** : 특성 방정식의 근, 즉 전달함수를 $$\infty$$로 만드는 값  
+  
+전달 함수의 특성 방정식의 근인 극점들이 시스템의 과도 응답 특성을 좌우 한다.  
+  
+조금 더 쉬운 이해를 위해 3B1B채널의 라플라스 변환 시리즈를 추천한다.  
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=-j8PzkZ70Lg">
+    <img src="http://img.youtube.com/vi/-j8PzkZ70Lg/0.jpg" alt="Video Label">
+  </a>
+   <br/>
+    라플라스 변환에 대한 영상(3개로 나뉘어 있다.)
+</p>
+  
+DC모터의 극점을 알기 위한 식은 다음과 같다. (마찰계수 B는 무시, B= 0)
+<p>
+\begin{align}
+\frac{\omega_m}{V_a} &=\frac{\frac{K}{JL_a}}{s^2 + (\frac{R_a}{L_a})s +\frac{K^2}{JL_a} } 
+= \frac{\frac{1}{K}(\frac{R_a}{L_a}\frac{K^2}{JR_a})}{s^2 + (\frac{R_a}{L_a})s + (\frac{R_a}{L_a}\frac{K^2}{JL_a}) } \\[4pt]
+&=\frac{\frac{1}{K}(\frac{1}{T_m}\frac{1}{T_a})}{s^2 + (\frac{1}{T_a})s +(\frac{1}{T_a}\frac{1}{T_m}) }
+\end{align}
+</p> 
+
+$$T_a = \frac{L_a}{R_a}$$는 전기적 시정수 이고, $$T_m = \frac{JL_a}{K^2}$$는 기계적 시정수 이다.  
+
+따라서 극점과 감쇠비는 다음과 같다. 
+  
+<p>
+\begin{align}
+s_{1,2} = -\frac{1}{2T_a} \pm \frac{1}{T_a} \sqrt{\frac{1}{4}- \frac{T_a}{T_m}} \\[4pt]
+\zeta = \frac{1}{2}\sqrt{\frac{T_m}{T_a}} =\frac{1}{2}\frac{R_a}{K}\sqrt{\frac{J}{L_a}} 
+\end{align}
+</p>
+  
+이를 통해 시스템의 과도 응답을 알 수 있다.  
+
+마지막으로 전기적 시정수($$T_a$$)는 기계적 시정수($$T_m$$)에 비하여 매우 작다. 이 말은 전기적 시스템의 응답이 기계적 시스템의 응답보다 매우 빠르다는 것을 의미한다. 우리가 속도를 구할때(기계적 시스템) 전류는 전압에 바로 비례해서 변화한다고 생각할수 있다. 따라서 이를 무시하기 위해 인덕턴스 $$L_a=0$$로 놓으면, 전압에 따른 속도 응답만 볼 수 있다.  
+
+<p>
+\begin{align}
+\frac{\omega_m}{V_a} &=\frac{\frac{K}{R_a Js}}{1+\frac{K^2}{R_a Js}} = \frac{K}{R_a Js + K^2} =  \frac{\frac{K}{R_a J}}{s + \frac{K^2}{R_a J}} \\[4pt]
+                     &= \frac{1}{K} \frac{\omega_c}{s+\omega_c}, \, \, \, \big( \omega_c = \frac{K^2}{JR_a} \big)
+\end{align}
+</p> 
+
+이는 [low pass filter](https://en.wikipedia.org/wiki/Low-pass_filter#Frequency_response)와 같은 형태인 것을 알 수 있다.  
+  
+직류 전동기의 속도$$\omega_m$$은 전압 $$V_a$$가 인가 되면 차단 주파수 $$\omega_c$$를 가진 low pass filter를 거쳐 나온다는 것을 알 수 있다.  
+
+### reference
+1. 모터제어 DC,AC,BLDC Motors, 김상훈  
+2. K-MOOC, 전동기제어, 이교범  
+3. 보면서 이해하는 직류전동기 원리 (회전원리,발전원리), https://www.youtube.com/watch?v=HqlrxXh7lHU
+4. 3B1B 라플라스 변환 3개, https://youtu.be/-j8PzkZ70Lg?si=91YD3OBtRNpb5gtV
