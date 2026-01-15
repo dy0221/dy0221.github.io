@@ -1,7 +1,7 @@
 ---
 title: '4.DC모터'
 date: 2026-01-13
-permalink: /posts/motor-control/3/
+permalink: /posts/motor-control/4/
 tags:
   - Study note
   - Motor control
