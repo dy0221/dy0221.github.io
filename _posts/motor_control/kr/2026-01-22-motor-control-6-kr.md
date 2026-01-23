@@ -1,6 +1,6 @@
 ---
 title: '6.Induction motor'
-date: 2026-01-13
+date: 2026-01-23
 permalink: /posts/motor-control/6/
 tags:
   - Study note
