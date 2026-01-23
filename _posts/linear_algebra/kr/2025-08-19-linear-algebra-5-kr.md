@@ -6,7 +6,7 @@ tags:
   - Study note
   - Linear Algebra
   - kr
-
+excerpt: ""
 parent_category: Math Notes
 category: Linear Algebra
 lang: kr

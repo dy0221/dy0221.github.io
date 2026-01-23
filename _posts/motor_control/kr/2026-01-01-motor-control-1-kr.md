@@ -7,6 +7,7 @@ tags:
   - Motor control
   - kr
 
+excerpt: ""
 parent_category: Study
 category: Motor Control
 lang: kr
