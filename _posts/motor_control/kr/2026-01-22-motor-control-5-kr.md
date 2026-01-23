@@ -12,3 +12,5 @@ category: Motor Control
 lang: kr
 slug_id: Motor Control/5
 ---
+
+### test
