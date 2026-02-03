@@ -18,7 +18,7 @@ slug_id: Motor Control/9
 
 교류 전류를 사용하는 유도, 동기 전동기는 DC모터와 달리 속도를 자세히 제어하기 힘들다.  
   
-따라서 d-q축 변환을 통해 자속과 전압을 따로 표기하고, 시간에 따라 바뀌는 시변수(Time-variant)를 불시변수(Time-invariant)로써 봄으로써 DC모터와 같이 제어가 편해진다.  
+따라서 d-q축 변환을 통해 자속과 전압을 따로 표기하고, 시간에 따라 바뀌는 시변수(Time-variant)를 시불변수(Time-invariant)로써 봄으로써 DC모터와 같이 제어가 편해진다.  
 abc축을 d-q축으로 변환하기전에 abc축 모델링을 먼저 보자.  
   
 ### 유도전동기 abc축 모델링
@@ -72,7 +72,7 @@ L_{asbs} = L_{ascs} = L_{bsas} = L_{bscs} = L_{csas} = L_{csbs} &= L_{ms} \cos (
 \end{align}
 </p> 
   
-상호 인덕턴스는 서로의 자속을 방해한다는 것을 알 수 있다.  
+결과를 보면, 상호 인덕턴스는 서로의 자속을 방해한다는 것을 알 수 있다.  
 
 <p align="center">
 $$    
