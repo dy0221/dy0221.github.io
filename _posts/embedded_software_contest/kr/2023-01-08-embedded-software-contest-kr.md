@@ -9,6 +9,7 @@ tags:
 
 excerpt: ""
 parent_category: Contest
+category: Embedded Software Contest
 lang: kr
 slug_id: Contest/1
 ---
