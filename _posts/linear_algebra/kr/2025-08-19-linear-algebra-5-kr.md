@@ -7,7 +7,7 @@ tags:
   - Linear Algebra
   - kr
 excerpt: ""
-parent_category: Math Notes
+parent_category: Study
 category: Linear Algebra
 lang: kr
 slug_id: Linear Algebra/Inverse matrix and LU
