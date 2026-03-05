@@ -17,11 +17,12 @@ slug_id: Impedance Control/3
   
 ### 임피던스 제어 구현
   
-단일 모터에서 임피던스 제어는 스프링 댐퍼(PD)제어기로써 나타낼 수 있다.  
+단일 모터에서 임피던스 제어는 가상의 스프링 댐퍼(PD)제어기로써 나타낼 수 있다.  
   
-임피던스 제어 matlab(내가 다루었던 survey논문에서도 정리하지는 않았지만 1자유도 모터의 임피던스 제어 내용도 같다.)  
-[https://kr.mathworks.com/company/technical-articles/enhancing-robot-precision-and-safety-with-impedance-control.html](https://kr.mathworks.com/company/technical-articles/enhancing-robot-precision-and-safety-with-impedance-control.html)  
-  
+임피던스 제어설명에 대한 matlab 주소  
+(내가 다루었던 survey논문에서도 정리하지는 않았지만 1자유도 모터의 임피던스 제어 내용도 같다.)   
+[https://kr.mathworks.com/company/technical-articles/enhancing-robot-precision-and-safety-with-impedance-control.html](https://kr.mathworks.com/company/technical-articles/enhancing-robot-precision-and-safety-with-impedance-control.html)   
+   
 이 경우 비례항(각도식)이 스프링을 나타 내고, 미분항(속도식)이 댐퍼를 나타낸다.  
   
 <p align="center">
@@ -30,7 +31,7 @@ $$
 $$
 </p> 
   
-여기서 왜 현재값에서 평형점을 빼는 것이 아닌, 반대로 평형점에서 현재 값을 넣어주는 이유는 환경에의해 방해 받았을 때, 해당 임피던스로 만들어진 힘으로 되돌아 가야 하기 때문에 -가 붙었다고 생각 하면 편하다.  
+여기서 왜 (현재 값 - 평형점)을 빼는 것이 아닌, 반대로 (평형점 - 현재 값)을 넣어주는 이유는 환경에의해 방해 받았을 때, 해당 임피던스로 만들어진 힘으로 되돌아 가야 하기 때문에 -가 붙었다고 생각 하면 편하다.  
   
 구현 코드는 다음과 같다.
 ``` c
@@ -232,7 +233,7 @@ float u = u_ff + (K_d * error_angle) + (B_d * error_vel);
 ```
 앞서 봤던 스프링과 댐퍼로 이루어진 PD제어기의 형태를 띄고 있고 u_ff는 조금 제어가 잘 안되면 넣으려고 했던 피드 포워드 항이다.  
   
->파라미터들의 ***직관적(dynamic specification)***이해.  
+>파라미터들의 **직관적(dynamic specification)**이해.  
 >  
 >- K_d는 강성을 의미하므로 커지면 접촉힘이 커진다.  
 >- B_d는 댐핑을 의미하고, 커지면 모터의 운동이 느려지고 진동이 줄어든다.  
@@ -241,10 +242,33 @@ float u = u_ff + (K_d * error_angle) + (B_d * error_vel);
 논문에서 다루었던 내용과 정말 같은지 확인 하기 위해 3가지의 case를 정리했다.  
   
 ### CASE1 K0.8 B0.01
-이 경우 모터가 내가 생각하기에는 적절한 탄성을 갖고 평형점으로 되돌아 오는 모습을 확인 할 수있다.  
+<p align="center">
+  <a href="https://youtu.be/05NoxKzyMZI?si=CEna2tCXjQcxv_I5&t=78">
+    <img src="http://img.youtube.com/vi/05NoxKzyMZI/0.jpg" alt="Video Label">
+  </a>
+   <br/>
+   K0.8 B0.01 test 영상
+</p>
+이 경우 모터가 내가 생각하기에는 적절한 탄성을 갖고 평형점으로 되돌아 오는 모습을 확인 할 수 있다.  
+
 ### CASE2 K0.1 B0.01
-강성을 내렸더니 영상에는 담길지 모르겠지만, 확실하게 접촉힘이 줄어든것이 느껴졌고, 상대적으로 댐핑이 늘어나서 인지 모터의 움직임이 느려지고 심지어는 그자리에 멈춰있는것을 알 수 있다.  
+<p align="center">
+  <a href="https://youtu.be/05NoxKzyMZI?si=eDuY6xusbcHZInlT&t=90">
+    <img src="http://img.youtube.com/vi/05NoxKzyMZI/0.jpg" alt="Video Label">
+  </a>
+   <br/>
+   K0.1 B0.01 test 영상
+</p>
+강성을 내렸더니 영상에는 담길지 모르겠지만, 확실하게 접촉힘이 줄어든것이 느껴졌고, 상대적으로 댐핑이 늘어나고 스프링(강성)이 감소하여 되돌아 가지 않고 그자리에 멈추는 것을 알 수 있다.  
+
 ### CASE3 K0.8 B0.0
+<p align="center">
+  <a href="https://youtu.be/05NoxKzyMZI?si=wj54YbnoCHFsBVOc&t=100">
+    <img src="http://img.youtube.com/vi/05NoxKzyMZI/0.jpg" alt="Video Label">
+  </a>
+   <br/>
+   K0.1 B0.0 test 영상
+</p>
 이 경우는 B를 줄였더니 진동이 매우 커진 것을 알 수 있다.  
   
 ### 결론 
