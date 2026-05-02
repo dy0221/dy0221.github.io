@@ -99,6 +99,8 @@ docker compose up
 그후 그냥 `docker start -a` 로 시작 하면 확인 가능
 
 ### window
+ruby 3.3.x버전 사용
+
 프로젝트 폴더에 들어가서 우클릭으로 터미널 열기 그 후 다음 코드 입력
 ``` bash
 bundle exec jekyll serve
